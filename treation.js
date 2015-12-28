@@ -29,7 +29,7 @@ function insertRecord(tableId, tableToken, cells) {
   });
 }
 
-module.exports.createTable = function (callback) {
+module.exports.createTable = function *() {
 //   var name = this.request.body['name'];
 
 //   var option = {
@@ -63,11 +63,11 @@ module.exports.createTable = function (callback) {
       table_id: tableId,
       table_token: tableToken,
       columns: [
-        {editable: false, name: 'NAME', type: 'singleline'}
-        // {editable: false, name: 'UDID', type: 'singleline'},
-        // {editable: false, name: 'IMEI', type:'singleline'},
-        // {editable: false, name: 'VERSION', type: 'singleline'},
-        // {editable: false, name: 'PRODUCT', type: 'singleline'}
+        {editable: false, name: 'NAME', type: 'singleline'},
+        {editable: false, name: 'UDID', type: 'singleline'},
+        {editable: false, name: 'IMEI', type:'singleline'},
+        {editable: false, name: 'VERSION', type: 'singleline'},
+        {editable: false, name: 'PRODUCT', type: 'singleline'}
       ]
     }
   };
@@ -76,7 +76,9 @@ module.exports.createTable = function (callback) {
     console.log('response:' + response.statusCode);
     if (response.statusCode == 201) {
       console.log('columns: insert done.');
-      callback(tableId, tableToken);
     }
   });
+
+  console.log('after create column');
+  return [tableId, tableToken];
 }

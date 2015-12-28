@@ -1,6 +1,6 @@
 'use strict';
 
-const SERVER_NAME = process.env.PIN_SERVER_NAME || 'http://localhost:3000';
+const SERVER_NAME = process.env.PIN_SERVER_NAME || 'http://channel.ananwbr.com:7777';
 
 var randomstring = require('randomstring');
 var treation = require('./treation');
@@ -19,12 +19,14 @@ function register(integrationId, tableId, tableToken) {
 }
 
 module.exports.create = function *() {
-  treation.createTable(function (tableId, tableToken){
-    var integrationId = randomstring.generate();
-    register(integrationId, tableId, tableToken);
+  var tableInfo = yield treation.createTable();
+  var tableId = tableInfo[0];
+  var tableToken = tableInfo[1];
 
-    var url = SERVER_NAME + '/udidcollector' + '/' + integrationId;
-    console.log('urlurlurl:' + url)
-    // callback(url);
-  });
+  var integrationId = randomstring.generate();
+  register(integrationId, tableId, tableToken);
+  console.log('after register');
+
+  var url = SERVER_NAME + '/udidcollector' + '/' + integrationId;
+  this.body = '<html><body>' + url + '</body></html>';
 };
