@@ -2,6 +2,8 @@
 
 var parser = require('xml2js').parseString;
 var url = require('url') ;
+var async = require('async');
+
 var treation = require('./treation');
 
 function parse(data, callback) {
@@ -30,11 +32,7 @@ function parse(data, callback) {
 			};
 		};
 
-		record['NAME'] = 'wbr';
-		console.log('record' + record);
-		treation.insertRecord(record);
-
-  	callback(queryString);
+  	callback(queryString, record);
 	});
 }
 
@@ -51,18 +49,36 @@ function readStreamAsMap(stream, callback) {
 }
 
 module.exports.collect = function *(next) {
+	var rawData = '';
+	var queryString = '';
+	var deviceInfo;
 	var context = this;
-	readStreamAsMap(this.req, function (query){
-		var queryString = '';
-		if (query != null) {
-			queryString = '?' + query;
-		};
+
+	async.series([
+		function (callback) {
+		  context.req.on("data", function(chunk) {
+		    rawData += chunk;
+		  });
+		  context.req.on("end", function() { 
+		  	callback();
+		  });
+		},
+		function (callback) {
+			parse(rawData, function (result, record) {
+					queryString = result;
+					deviceInfo = record;
+		  		callback();
+		  	});
+		}
+	], function (){
+		deviceInfo['NAME'] = 'wbr';
+		treation.insertRecord(deviceInfo);
 
 		console.log('queryString:' + queryString);
 		context.status = 301;
-		context.redirect('/show' + queryString);
+		context.redirect('/show?' + queryString);
 	});
-}
+};
 
 module.exports.show = function *(next) {
 	var queryObject = url.parse(this.req.url,true).query;
