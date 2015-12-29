@@ -1,0 +1,15 @@
+<h1>Your Device Info</h1>
+
+<ul>
+<% for (var key in deviceInfo) { %>
+	<li><%= key %> : <%= deviceInfo[key] %> </li>
+<% } %>
+</ul>
+
+<form action="" method="post">
+	<div>
+		<input type="text" name="registerId" hidden=true value='7m4CpETR4e57W2Y4CqdnrNpKAC6mvhLn'/>
+		<input type="text" name='name' placeholder='请输入名字'>
+	  <input type="submit" value="提交" />
+	</div>
+</form>

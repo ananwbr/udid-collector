@@ -4,6 +4,15 @@ var app = require('koa')();
 var router = require('koa-router')();
 var bodyParser = require('koa-bodyparser');
 var fileServer = require('koa-static');
+var render = require('koa-ejs');
+
+render(app, {
+  root: __dirname + '/views',
+  layout: false,
+  viewExt: 'html',
+  cache: false,
+  debug: true
+});
 
 var integration = require('./lib/integration');
 var udid = require('./lib/udid');
