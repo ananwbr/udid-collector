@@ -27,7 +27,7 @@ router.post('/create', integration.create);
 
 router.post('/upload', udid.upload);
 
-router.get('/udidcollector/*', function *(){
+router.get('/udid/*', function *(){
 	this.body = 'Bravo!!!';
 });
 
