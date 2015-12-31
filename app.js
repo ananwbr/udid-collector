@@ -19,7 +19,7 @@ var udid = require('./lib/udid');
 
 app.use(bodyParser());
 
-router.post('/udid', udid.collect);
+router.post('/collect', udid.collect);
 
 router.get('/show', udid.show);
 
@@ -27,9 +27,9 @@ router.post('/create', integration.create);
 
 router.post('/upload', udid.upload);
 
-router.get('/udid/*', function *(){
-	this.body = 'Bravo!!!';
-});
+// router.get('/udid/*', function *(){
+// 	yield this.render('collect');
+// });
 
 app
   .use(router.routes())
