@@ -6,6 +6,9 @@ var bodyParser = require('koa-bodyparser');
 var fileServer = require('koa-static');
 var render = require('koa-ejs');
 
+var integration = require('./lib/integration');
+var udid = require('./lib/udid');
+
 render(app, {
   root: __dirname + '/views',
   layout: false,
@@ -13,9 +16,6 @@ render(app, {
   cache: false,
   debug: true
 });
-
-var integration = require('./lib/integration');
-var udid = require('./lib/udid');
 
 app.use(bodyParser());
 
