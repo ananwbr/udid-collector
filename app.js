@@ -27,6 +27,8 @@ router.post('/create', integration.create);
 
 router.post('/upload', udid.upload);
 
+router.get('/shareurl', udid.shareUrl);
+
 // router.get('/udid/*', function *(){
 // 	yield this.render('collect');
 // });
