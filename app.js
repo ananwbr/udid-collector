@@ -28,11 +28,11 @@ router.get('/show', udid.show);
 //integrate
 router.post('/integrate', integration.integrate);
 
+//get share url
+router.get('/shareurl', integration.shareUrl);
+
 //upload device info to treation
 router.post('/upload', udid.upload);
-
-//get share url
-router.get('/shareurl', udid.shareUrl);
 
 app
   .use(router.routes())
