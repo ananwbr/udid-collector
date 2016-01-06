@@ -25,14 +25,17 @@ router.post('/collect', udid.collect);
 //show device info
 router.get('/show', udid.show);
 
+//upload device info to treation
+router.post('/upload', udid.upload);
+
+//export device info 
+router.get('/export', udid.exportdata);
+
 //integrate
 router.post('/integrate', integration.integrate);
 
 //get share url
 router.get('/shareurl', integration.shareUrl);
-
-//upload device info to treation
-router.post('/upload', udid.upload);
 
 app
   .use(router.routes())
