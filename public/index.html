@@ -3,15 +3,6 @@
 <h1>UDID Collector</h1>
 <p>UDID Collector is a web-based simple server to collect UDIDs.</p>
 
-<div id='input'>
-  <form id="nameForm" action="/create" method="post">
-    Name: <input type="text" style="width: 10em" name="name">
-    <button type="submit">创建表格</button>
-  </form>
-</div>
-
-<div id="deviceInfo" style="display: none">
-  
-</div>
-
-<script type="text/javascript" source='api.js'></script>
+<form method="get" action="udid.mobileconfig">
+	<button type="submit">Get UDID</button>
+</form>

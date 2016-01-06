@@ -19,19 +19,20 @@ render(app, {
 
 app.use(bodyParser());
 
+//.mobileconfig callback
 router.post('/collect', udid.collect);
 
+//show device info
 router.get('/show', udid.show);
 
-router.post('/create', integration.create);
+//integrate
+router.post('/integrate', integration.integrate);
 
+//upload device info to treation
 router.post('/upload', udid.upload);
 
+//get share url
 router.get('/shareurl', udid.shareUrl);
-
-// router.get('/udid/*', function *(){
-// 	yield this.render('collect');
-// });
 
 app
   .use(router.routes())
