@@ -65,8 +65,6 @@ footer {
   @include button-size(18px, 20px, 16px, 1.35, 30px);
   font-weight: bold;
 }
-section {
-}
 .align-center {
   display: table;
   width: 100%;
@@ -83,7 +81,9 @@ section {
   text-align: center;
 }
 .device-tip {
-  font-size: 16px;
+  max-width: 280px;
+  margin: 0 auto;
+  font-size: 18px;
 }
 form {
   padding: 30% 10px 20px;

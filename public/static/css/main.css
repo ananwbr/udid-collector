@@ -1360,7 +1360,9 @@ footer {
   text-align: center; }
 
 .device-tip {
-  font-size: 16px; }
+  max-width: 280px;
+  margin: 0 auto;
+  font-size: 18px; }
 
 form {
   padding: 30% 10px 20px; }
