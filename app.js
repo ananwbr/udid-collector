@@ -22,6 +22,8 @@ render(app, {
 
 app.use(bodyParser());
 
+router.get('/configfile', udid.configfile);
+
 //.mobileconfig callback
 router.post('/collect', udid.collect);
 
