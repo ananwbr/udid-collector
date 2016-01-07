@@ -10,14 +10,15 @@
   <body>
     <section>
       <div class="container">
-        <form action="">
+        <form action="/upload" method="post">
+          <input type="text" name="deviceInfo" hidden=true value=<%= encodeURIComponent(JSON.stringify(deviceInfo)) %>>
           <div class="form-group">
             <label for="udid">UDID</label>
-            <p>asdfkalsdjkalsdei01347ajfkdanfdksalfds79</p>
-          </div>
+            <p><%= deviceInfo['UDID'] %></p>
+          </div> 
           <div class="form-group">
             <label for="name">Give it a name</label>
-            <input type="text" placeholder="Tom-iPhone6s">
+            <input type="text" name='deviceName' placeholder="Tom-iPhone6s">
           </div>
           <button type="submit" class="btn btn-secondary btn-submit">Submit</button>
         </form>

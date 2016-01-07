@@ -9,8 +9,6 @@
             <key>DeviceAttributes</key>
             <array>
                 <string>UDID</string>
-                <string>IMEI</string>
-                <string>VERSION</string>
                 <string>PRODUCT</string>
             </array>
         </dict>

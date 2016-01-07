@@ -37,6 +37,15 @@ router.post('/integrate', integration.integrate);
 //get share url
 router.get('/shareurl', integration.shareUrl);
 
+router.get('/udid', function *() {
+	var ua = this.headers['user-agent'];
+	if (/iPhone|iPod|iPad/.test(ua) && /Safari/.test(ua)) {
+		yield this.render('get-udid');
+	} else {
+		yield this.render('done', {message : 'Please open this page in Safari on iOS devices'});
+	}
+});
+
 app
   .use(router.routes())
   .use(router.allowedMethods());
