@@ -47,7 +47,7 @@ router.get('/', function *() {
 	if (/iPhone|iPod|iPad/.test(ua) && /Safari/.test(ua)) {
 		yield this.render('get-udid');
 	} else {
-		yield this.render('done', {message : 'Please open this page in Safari on iOS devices'});
+		yield this.render('device');
 	}
 });
 
