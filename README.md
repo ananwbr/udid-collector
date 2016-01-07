@@ -22,5 +22,8 @@ npm install --production
 ```
 
 ```
+# set UDID_SERVER_NAME to the domain name with protocol, for example:
+export UDID_SERVER_NAME=http://udid.treation.com
+
 npm start
 ```
