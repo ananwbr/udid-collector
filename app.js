@@ -44,7 +44,8 @@ router.get('/shareurl', integration.shareUrl);
 
 router.get('/', function *() {
 	var ua = this.headers['user-agent'];
-	if (/iPhone|iPod|iPad/.test(ua) && /Safari/.test(ua)) {
+  console.log('user-agent:' + ua);
+	if (/iPhone|iPod|iPad/.test(ua) && /Safari/.test(ua) && !/CriOS/.test(ua)) {
 		yield this.render('get-udid');
 	} else {
 		yield this.render('device');
