@@ -9,8 +9,8 @@ var render = require('koa-ejs');
 var integration = require('./lib/integration');
 var udid = require('./lib/udid');
 
-const serverName = require('./config').severName;
-console.log(serverName);
+const SERVER_NAME = require('./config').severName;
+console.log(SERVER_NAME);
 
 render(app, {
   root: __dirname + '/views',
