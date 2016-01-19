@@ -1,55 +1,51 @@
 'use strict';
 
-var app = require('koa')();
-var router = require('koa-router')();
-var bodyParser = require('koa-bodyparser');
-var fileServer = require('koa-static');
-var render = require('koa-ejs');
+const app = require('koa')();
+const router = require('koa-router')();
+const bodyParser = require('koa-bodyparser');
+const fileServer = require('koa-static');
+const render = require('koa-ejs');
 
-var integration = require('./lib/integration');
-var udid = require('./lib/udid');
-
-const SERVER_NAME = require('./config').severName;
-console.log(SERVER_NAME);
+const integration = require('./lib/integration');
+const udid = require('./lib/udid');
 
 render(app, {
   root: __dirname + '/views',
   layout: false,
   viewExt: 'html',
   cache: false,
-  debug: true
+  debug: true,
 });
 
 app.use(bodyParser());
 
 router.get('/configfile', udid.configfile);
 
-//.mobileconfig callback
+// .mobileconfig callback
 router.post('/collect', udid.collect);
 
-//show device info
+// show device info
 router.get('/show', udid.show);
 
-//upload device info to treation
+// upload device info to treation
 router.post('/upload', udid.upload);
 
-//export device info 
+// export device info
 router.get('/export', udid.exportdata);
 
-//integrate
+// integrate
 router.post('/integrate', integration.integrate);
 
-//get share url
+// get share url
 router.get('/shareurl', integration.shareUrl);
 
 router.get('/', function *() {
-	var ua = this.headers['user-agent'];
-  console.log('user-agent:' + ua);
-	if (/iPhone|iPod|iPad/.test(ua) && /Safari/.test(ua) && !/CriOS/.test(ua)) {
-		yield this.render('get-udid');
-	} else {
-		yield this.render('device');
-	}
+  const ua = this.headers['user-agent'];
+  if (/iPhone|iPod|iPad/.test(ua) && /Safari/.test(ua) && !/CriOS/.test(ua)) {
+    yield this.render('get-udid');
+  } else {
+    yield this.render('device');
+  }
 });
 
 app
