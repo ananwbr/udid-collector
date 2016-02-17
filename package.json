@@ -24,7 +24,7 @@
   },
   "scripts": {
     "start": "node --harmony app.js",
-    "dev": "node-dev --harmony app.js"
+    "dev": "UDID_SERVER_NAME=http://192.168.2.110:3000 NODE_ENV=development node-dev --harmony app.js"
   },
   "author": "ananwbr",
   "license": "ISC"

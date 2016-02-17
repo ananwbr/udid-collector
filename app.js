@@ -39,7 +39,7 @@ router.post('/integrate', integration.integrate);
 // get share url
 router.get('/shareurl', integration.shareUrl);
 
-router.get('/', function *() {
+router.get('/', function* () {
   const ua = this.headers['user-agent'];
   if (/iPhone|iPod|iPad/.test(ua) && /Safari/.test(ua) && !/CriOS/.test(ua)) {
     yield this.render('get-udid');
